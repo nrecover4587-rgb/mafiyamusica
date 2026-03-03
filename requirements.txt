@@ -1,7 +1,7 @@
 aiofiles
 bard
 SpeechRecognition
-aiohttp
+aiohttp 
 asyncio
 deepai
 python-whois
@@ -14,7 +14,7 @@ pydub
 pycountry
 heroku3
 apscheduler
-motor
+motor 
 numpy
 pillow==9.5.0
 psutil
@@ -23,10 +23,10 @@ pyfiglet
 pytz
 future==0.18.3
 search_engine_parser
-py-tgcalls==2.4.2
+py-tgcalls==0.9.7
 pykeyboard
 pyshorteners
-pyrogram==2.0.106
+#pyrogram==2.0.106
 pyrofork
 python-dotenv
 pyyaml==6.0.1
@@ -55,4 +55,3 @@ bing_image_downloader
 googlesearch-python
 sympy
 yt_dlp
-git+https://github.com/abdfnx/py-yt.git
