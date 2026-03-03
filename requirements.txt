@@ -55,4 +55,3 @@ bing_image_downloader
 googlesearch-python
 sympy
 yt_dlp
-git+https://github.com/abdfnx/py-yt.git
