@@ -28,7 +28,7 @@ from SONALI_MUSIC.utils.decorators.language import languageCB
 from SONALI_MUSIC.utils.formatters import seconds_to_min
 from SONALI_MUSIC.utils.inline import close_markup, stream_markup, stream_markup_timer
 from SONALI_MUSIC.utils.stream.autoclear import auto_clean
-from SONALI_MUSIC.utils.thumbnails import get_thumb
+from SONALI_MUSIC.thumbnails import get_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
