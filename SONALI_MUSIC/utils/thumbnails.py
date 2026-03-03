@@ -1,55 +1,33 @@
-import os
 import math
 import requests
 from io import BytesIO
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 
-# -------- Helper: Download or Open Cover --------
-def load_cover(cover_source):
-    if cover_source.startswith("http"):
-        response = requests.get(cover_source, timeout=10)
+def get_thumb(cover_url, title, duration, channel):
+
+    # -------- Download Cover --------
+    try:
+        response = requests.get(cover_url, timeout=10)
         response.raise_for_status()
-        return Image.open(BytesIO(response.content)).convert("RGBA")
-    else:
-        return Image.open(cover_source).convert("RGBA")
+        cover = Image.open(BytesIO(response.content)).convert("RGBA")
+    except:
+        cover = Image.new("RGBA", (500, 500), (220, 220, 220))
 
-
-# -------- Main Thumbnail Function --------
-def get_thumb(
-    cover_source,
-    title="Unknown Title",
-    duration="0:00",
-    channel="Unknown",
-    views="",
-    progress=0.4,
-):
-    """
-    cover_source = image url or local path
-    progress = float between 0 and 1
-    """
-
-    cover = load_cover(cover_source)
-    original_cover = cover.copy()
-
-    # -------- Background --------
-    bg = original_cover.resize((1280, 720))
-    bg = bg.filter(ImageFilter.GaussianBlur(35))
-    bg = ImageEnhance.Brightness(bg).enhance(0.35)
-    bg = bg.convert("RGBA")
-
+    # -------- Create White Background --------
+    bg = Image.new("RGBA", (1280, 720), (245, 245, 245))
     draw = ImageDraw.Draw(bg)
 
     # -------- Hexagon Cover --------
-    hex_size = 420
-    cover_resized = original_cover.resize((hex_size, hex_size))
+    size = 420
+    cover = cover.resize((size, size))
 
-    mask = Image.new("L", (hex_size, hex_size), 0)
+    mask = Image.new("L", (size, size), 0)
     mask_draw = ImageDraw.Draw(mask)
 
     points = []
-    center = hex_size // 2
-    radius = hex_size // 2
+    center = size // 2
+    radius = size // 2
 
     for i in range(6):
         angle = math.radians(60 * i - 30)
@@ -58,79 +36,78 @@ def get_thumb(
         points.append((x, y))
 
     mask_draw.polygon(points, fill=255)
-    cover_resized.putalpha(mask)
+    cover.putalpha(mask)
 
     cover_x = 140
-    cover_y = (720 - hex_size) // 2
-    bg.paste(cover_resized, (cover_x, cover_y), cover_resized)
+    cover_y = (720 - size) // 2
 
-    # -------- Fonts --------
+    bg.paste(cover, (cover_x, cover_y), cover)
+
+    # -------- Fonts (Safe) --------
     try:
-        font_title = ImageFont.truetype("arialbd.ttf", 60)
-        font_info = ImageFont.truetype("arial.ttf", 35)
+        font_title = ImageFont.truetype("DejaVuSans-Bold.ttf", 55)
+        font_info = ImageFont.truetype("DejaVuSans.ttf", 32)
     except:
         font_title = font_info = ImageFont.load_default()
 
-    # -------- Right Side Info --------
-    text_x = cover_x + hex_size + 120
-    start_y = 260
+    # -------- Right Side Text --------
+    text_x = cover_x + size + 120
+    start_y = 250
 
     # Title
     draw.text(
         (text_x, start_y),
         title[:40],
-        fill=(20, 20, 20),
+        fill=(0, 0, 0),
         font=font_title,
     )
 
-    # Info Lines
-    info_text = f"YouTube  |  {views}" if views else "YouTube"
+    # Info lines
     draw.text(
         (text_x, start_y + 90),
-        info_text,
-        fill=(40, 40, 40),
+        "YouTube  |  395M views",
+        fill=(60, 60, 60),
         font=font_info,
     )
 
     draw.text(
         (text_x, start_y + 140),
         f"Duration  |  {duration}",
-        fill=(50, 50, 50),
+        fill=(70, 70, 70),
         font=font_info,
     )
 
     draw.text(
         (text_x, start_y + 190),
         f"Player  |  @{channel}",
-        fill=(60, 60, 60),
+        fill=(80, 80, 80),
         font=font_info,
     )
 
-    # -------- Progress Bar --------
+    # -------- Thin Progress Bar --------
     bar_x = text_x
-    bar_y = start_y + 250
-    bar_width = 500
-    bar_height = 12
+    bar_y = start_y + 260
+    bar_width = 480
+    bar_height = 8
 
-    # Background
-    draw.rounded_rectangle(
+    # Background line
+    draw.rectangle(
         [(bar_x, bar_y),
          (bar_x + bar_width, bar_y + bar_height)],
-        radius=10,
         fill=(200, 200, 200),
     )
 
-    # Progress Fill
-    progress = max(0, min(progress, 1))
-    draw.rounded_rectangle(
+    # Filled part (50%)
+    progress_width = int(bar_width * 0.5)
+
+    draw.rectangle(
         [(bar_x, bar_y),
-         (bar_x + int(bar_width * progress), bar_y + bar_height)],
-        radius=10,
+         (bar_x + progress_width, bar_y + bar_height)],
         fill=(0, 0, 0),
     )
 
-    # -------- Save File --------
-    output_path = "thumb.png"
+    # -------- Save --------
+    output_path = "/tmp/thumb.png"
     bg.save(output_path)
 
     return output_path
