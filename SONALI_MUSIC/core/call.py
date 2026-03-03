@@ -37,7 +37,7 @@ from SONALI_MUSIC.utils.inline.play import stream_markup
 from SONALI_MUSIC.utils.stream.autoclear import auto_clean
 
 # ✅ FIXED IMPORT (IMPORTANT)
-from SONALI_MUSIC.thumbnails import get_thumb
+from SONALI_MUSIC.utils.thumbnails import get_thumb
 
 from strings import get_string
 
