@@ -26,11 +26,9 @@ API_KEY = getenv("API_KEY", 'NxGBNexGenBots5f0df7') # youtube song api key
 UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/nrecover4587-rgb/mafiyamusica",)
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
-    "GIT_TOKEN", "YOUR_GIT_TOKEN")
-    
-    PRIVACY_LINK = getenv("PRIVACY_LINK", "https://telegra.ph/Privacy-Policy-for-YukkiMusic-08-30")
-
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/codexempire")
+    "GIT_TOKEN", "YOUR_GIT_TOKEN")                                                                                                                                                                                                                                                                                    
+PRIVACY_LINK = getenv("PRIVACY_LINK", "https://telegra.ph/Privacy-Policy-for-YukkiMusic-08-30")
+                                                                                                                                                                                                                                                                                                                                                                                                   SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/codexempire")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/mentalchatting")
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 AUTO_LEAVE_ASSISTANT_TIME = int(getenv("ASSISTANT_LEAVE_TIME", "9000"))
