@@ -9,7 +9,7 @@ from SONALI_MUSIC.utils.database import get_loop
 from SONALI_MUSIC.utils.decorators import AdminRightsCheck
 from SONALI_MUSIC.utils.inline import close_markup, stream_markup
 from SONALI_MUSIC.utils.stream.autoclear import auto_clean
-from SONALI_MUSIC.utils.thumbnails import get_thumb
+from SONALI_MUSIC.thumbnails import get_thumb
 from config import BANNED_USERS
 
 
