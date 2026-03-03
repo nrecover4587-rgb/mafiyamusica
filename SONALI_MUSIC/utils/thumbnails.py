@@ -57,7 +57,7 @@ async def get_thumb(videoid):
         except:
             font = ImageFont.load_default()
 
-        title = "SIYA x EILSIH"
+        title = " 𝞄⃕𝖋𝖋 𝑚𝑟 𝑚𝑒𝑛𝑡𝑎�"
         w = draw.textlength(title, font=font)
 
         draw.text(
