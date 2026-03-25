@@ -1,7 +1,7 @@
 
 import os, re, random, aiofiles, aiohttp, math
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
-from youtubesearchpython.__future__ import VideosSearch
+from py_yt import VideosSearch
 from SONALI_MUSIC import app
 from config import YOUTUBE_IMG_URL
 
