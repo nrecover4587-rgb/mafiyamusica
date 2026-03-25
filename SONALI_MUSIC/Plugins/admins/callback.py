@@ -1,7 +1,6 @@
 import asyncio
-from telegram import CallbackQuery
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 
 from SONALI_MUSIC import YouTube, app
 from SONALI_MUSIC.core.call import Sonali
